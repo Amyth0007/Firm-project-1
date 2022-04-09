@@ -242,7 +242,7 @@
         <div class="col-lg-6 col-md-6">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1427.709275394112!2d75.31995766698638!3d19.867309554263336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdb9861a6d01f43%3A0x3a1b932d329091e9!2sGovernment%20College%20Of%20Engineering%2C%20Aurangabad!5e1!3m2!1sen!2sin!4v1649406857680!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="col-lg-6 col-md-6 map-hm-rht">
+<!--         <div class="col-lg-6 col-md-6 map-hm-rht">
           <div class="col-md-6 ">
             <label for="txt_name" class="lbl">&nbsp;</label>
             <input class="form-control" type="text" placeholder="Your Name">
@@ -267,9 +267,48 @@
             <input value="Send Message"  type="submit">
             </div>
           <br>
-        </div>
+        </div> -->
+	      <form autocomplete="off" method="post" name="google-sheet">
+            <div class="col-lg-6 col-md-6 map-hm-rht">
+              <div class="col-md-6 ">
+                <label for="txt_name" class="lbl">&nbsp;</label>
+                <input class="form-control" type="text" placeholder="Your Name" name="name">
+              </div>
+              <div class="col-md-6">
+                <label for="txt_mobile" class="lbl">&nbsp;</label>
+                <input maxlength="10" class="form-control" type="text" placeholder="Your Number" name="mobile">
+              </div>
+              <div class="col-md-12">
+                <label for="txt_emailaddress" class="lbl">&nbsp;</label>
+                <input class="form-control" type="text" placeholder="Your Email ID" name="email">
+              </div>
+              <div class="col-md-12">
+                <label for="txt_city" class="lbl">&nbsp;</label>
+                <input maxlength="250" class="form-control" type="text" placeholder="City" name="city">
+              </div>
+              <div class="col-md-12">
+                <label for="txt_Query" class="lbl">&nbsp;</label>
+                <textarea rows="5" cols="20" class="form-control" placeholder="Type Your Message.."
+                  name="msg"></textarea>
+              </div>
+              <div class="col-md-12 text-center"><br>
+                <input value="Send Message" type="submit" name="submit">
+              </div>
+              <br>
+            </div>
+	      </form>
       </div>
-       
+        <script>
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbwKjtdA3YSzI0l5WzOdI1GDf0BxrwL_qRz9PpwI46xDr1q1m55g5JiOEtDbn-YK_hMS4w/exec';
+          const form = document.forms['google-sheet']
+
+          form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+              .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+              .catch(error => console.error('Error!', error.message))
+          })
+        </script>
     </div>
     </div>
   </section>
